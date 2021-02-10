@@ -7,6 +7,5 @@ U -> Update
 D -> Delete
 </pre>
 <p>
-FastAPI uses the python as backend lanugage to perform the crud operations.<br>
 We are using Postgresql database.
 </p>
