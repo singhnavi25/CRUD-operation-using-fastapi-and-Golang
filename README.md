@@ -1,7 +1,7 @@
 # CRUD-operation-using-fastapi-and-Golang
 Here we are using fastapi to make possible crud operations and also the use the Golang to make go routine to work upon the database queries concurrently.
 CRUD standas for
-C -> Create
+<h1>C -> Create</h1>
 R -> Read
 U -> Update
 D -> Delete
