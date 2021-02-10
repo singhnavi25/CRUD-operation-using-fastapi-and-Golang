@@ -44,15 +44,25 @@ func main() {
 		fmt.Scan(&choice)
 		switch choice {
 		case 1:
-			go registerEmployee(db)
+			// to run as go routine then uncomment the below line and comment the next line you can see the difference
+			// go registerEmployee(db)
+			registerEmployee(db)
 		case 2:
-			go getEmployeeDetails(db)
+			// to run as go routine then uncomment the below line and comment the next line you can see the difference
+			//go getEmployeeDetails(db)
+			getEmployeeDetails(db)
 		case 3:
-			go updateEmployeeDetails(db)
+			// to run as go routine then uncomment the below line and comment the next line you can see the difference
+			//go updateEmployeeDetails(db)
+			updateEmployeeDetails(db)
 		case 4:
-			go getAllEmployeeDetails(db)
+			// to run as go routine then uncomment the below line and comment the next line you can see the difference
+			//go getAllEmployeeDetails(db)
+			getAllEmployeeDetails(db)
 		case 5:
-			go deleteEmployeeFromDB(db)
+			// to run as go routine then uncomment the below line and comment the next line you can see the difference
+			//go deleteEmployeeFromDB(db)
+			deleteEmployeeFromDB(db)
 		case 0:
 
 		default:
