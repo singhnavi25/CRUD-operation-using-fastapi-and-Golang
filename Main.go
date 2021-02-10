@@ -20,7 +20,7 @@ const (
 func main() {
 	fmt.Println("Hello, world")
 	postgresURL := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
+		"password=%s dbname=%s sslmode=verify-full,
 		host, port, user, password, database)
 	db, err := sql.Open("postgres", postgresURL)
 	if err != nil {
