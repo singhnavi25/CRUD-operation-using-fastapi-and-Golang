@@ -9,19 +9,19 @@ import (
 )
 
 const (
-	database = "" // Database name
-	user     = "" // User name for the database
-	password = "" // password for the database
-	host     = "" // host name for the database
-	port     = 5432 // port number used for the database operations
-	tableName = "" // enter table name for the database
+	DATABASE = "" // Database name
+	USER     = "" // User name for the database
+	PASSWORD = "" // password for the database
+	HOST     = "" // host name for the database
+	PORT     = 5432 // port number used for the database operations
+	TABLENAME = "" // enter table name for the database
 )
 
 func main() {
 	fmt.Println("Hello, world")
 	postgresURL := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=verify-full,
-		host, port, user, password, database)
+		HOST, PORT, USER, PASSWORD, DATABASE)
 	db, err := sql.Open("postgres", postgresURL)
 	if err != nil {
 		panic(err)
@@ -98,7 +98,7 @@ func registerEmployee(db *sql.DB) {
 	fmt.Scanln(&age)
 
 	query := fmt.Sprintf("INSERT INTO %s VALUES('%s', '%s', '%s', '%s', '%s');",
-		tableName, id, name, password, salary, age)
+		TABLENAME, id, name, password, salary, age)
 
 	_, err := db.Exec(query)
 	if err!=nil{
@@ -112,7 +112,7 @@ func getEmployeeDetails(db *sql.DB) {
 	var id string
 	fmt.Print("Enter employee id: ")
 	fmt.Scanln(&id)
-	query := fmt.Sprintf("SELECT * FROM %s WHERE ID = '%s';", tableName, id)
+	query := fmt.Sprintf("SELECT * FROM %s WHERE ID = '%s';", TABLENAME, id)
 	//fmt.Println(query)
 	rows, err := db.Query(query)
 	if err!=nil{
@@ -136,7 +136,7 @@ func getEmployeeDetails(db *sql.DB) {
 	color.Unset()
 }
 func getAllEmployeeDetails(db *sql.DB) {
-	query := fmt.Sprintf("SELECT * FROM %s;", tableName)
+	query := fmt.Sprintf("SELECT * FROM %s;", TABLENAME)
 	rows, err := db.Query(query)
 	if err!=nil{
 		panic(err)
@@ -159,7 +159,7 @@ func getAllEmployeeDetails(db *sql.DB) {
 	color.Unset()
 }
 func updateEmployeeDetails(db *sql.DB) {
-	query := fmt.Sprintf("UPDATE %s SET ", tableName)
+	query := fmt.Sprintf("UPDATE %s SET ", TABLENAME)
 	var id, name, pass, salary, age string
 	fmt.Scanln()
 	fmt.Print("Enter employee id: ")
@@ -208,7 +208,7 @@ func deleteEmployeeFromDB(db *sql.DB) {
 	fmt.Print("Enter employee id: ")
 	fmt.Scanln(&id)
 
-	query := fmt.Sprintf("DELETE FROM %s WHERE ID = '%s';", tableName, id)
+	query := fmt.Sprintf("DELETE FROM %s WHERE ID = '%s';", TABLENAME, id)
 
 	_, err := db.Exec(query)
 	if err!=nil{
@@ -220,7 +220,7 @@ func deleteEmployeeFromDB(db *sql.DB) {
 }
 
 func tableExist(db *sql.DB) bool{
-	query := fmt.Sprintf("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '%s'", strings.ToLower(tableName))
+	query := fmt.Sprintf("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '%s'", strings.ToLower(TABLENAME))
 	rows, err := db.Query(query)
 	if err!=nil{
 		panic(err)
@@ -229,7 +229,7 @@ func tableExist(db *sql.DB) bool{
 	for rows.Next(){
 		return true
 	}
-	query = fmt.Sprintf("CREATE TABLE %s(ID VARCHAR(10) PRIMARY KEY, NAME VARCHAR(30), PASSWORD VARCHAR(30), SALARY VARCHAR(15), AGE VARCHAR(3) )", tableName)
+	query = fmt.Sprintf("CREATE TABLE %s(ID VARCHAR(10) PRIMARY KEY, NAME VARCHAR(30), PASSWORD VARCHAR(30), SALARY VARCHAR(15), AGE VARCHAR(3) )", TABLENAME)
 	_, err = db.Exec(query)
 
 	if err!=nil{
