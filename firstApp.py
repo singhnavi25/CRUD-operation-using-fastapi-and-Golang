@@ -2,7 +2,7 @@ import psycopg2
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from typing import List, Dict
-import json
+
 cur = None
 conn = None
 table_name = "BestEmployees"
